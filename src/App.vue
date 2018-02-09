@@ -1,17 +1,36 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Child />
+    <router-link to="/">CA</router-link>
+    <router-link to="/cb">CB</router-link>
+    <router-link to="/cc">CC</router-link>
+    <router-view></router-view>
+    <div>
+      {{count}}
+      <button @click="add">add</button>
+    </div>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import Child from './components/child.vue'
 export default {
   name: 'app',
+  computed:{
+    count(){
+      return this.$store.state.count
+    }
+  },
   components: {
-    HelloWorld
+    HelloWorld,
+    Child
+  },
+  methods:{
+    add(){
+      this.$store.commit("addCount")
+    }
   }
 }
 </script>
