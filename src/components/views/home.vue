@@ -1,12 +1,12 @@
 <template lang="pug">
-  .a  {{msg}}
+  .home  {{msg}}
 </template>
 <script>
 export default {
-  name:'ca',
+  name:'home',
   data(){
     return{
-      msg:'this is a'
+      msg:'this is home'
     }
   }
 }

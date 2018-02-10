@@ -1,12 +1,12 @@
 <template lang="pug">
-  .c  {{msg}}
+  .shop-car  {{msg}}
 </template>
 <script>
 export default {
-  name:'cc',
+  name:'shopCar',
   data(){
     return{
-      msg:'this is c'
+      msg:'this is shop car'
     }
   }
 }

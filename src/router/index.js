@@ -1,24 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Acomponent from '../components/ca.vue'
-import Bcomponent from '../components/cb.vue'
-import Ccomponent from '../components/cc.vue'
+import Home from '../components//views/home.vue'
+import Category from '../components/views/category.vue'
+import ShopCar from '../components/views/shopCar.vue'
 Vue.use(Router)
 export default new Router({
   routes:[
     {
       path:'/',
-      name:'ca',
-      component:Acomponent
+      name:'home',
+      component:Home
     },
     {
-      path:'/cb',
-      name:'cb',
-      component:Bcomponent
+      path:'/category',
+      name:'category',
+      component:Category
     },{
-      path:'/cc',
-      name:'cc',
-      component:Ccomponent
+      path:'/shopCar',
+      name:'shopCar',
+      component:ShopCar
     }
   ]
 })
