@@ -1,23 +1,23 @@
 <template>
   <div class="app">
-    <User />
     <div class="bottom-menu">
-      <router-link to="/">首页</router-link>
-      <router-link to="/category">分类</router-link>
-      <router-link to="/shopCar">购物车</router-link>
+      <router-link to="/"><img src="./assets/img/home.png">首页</router-link>
+      <router-link to="/category"><img src="./assets/img/category.png">分类</router-link>
+      <router-link to="/shopCar"><img src="./assets/img/shopcar.png">购物车</router-link>
+      <router-link to="/user"><img src="./assets/img/user.png">我的</router-link>
     </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import User from '../src/components/views/user.vue'
 export default {
   name: 'app',
-  computed:{
+  data(){
+    return{
+    }
   },
-  components: {
-    User
+  computed:{
   },
   methods:{
   }
@@ -41,6 +41,7 @@ table,caption,tbody,tfoot,thead,tr,th,td,input,button,i,span{
 }
 html,body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size:12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height:100%;
@@ -59,17 +60,31 @@ a,a:visited,a:active,a:link{text-decoration:none;}
 }
 .bottom-menu{
   position: fixed;
+  z-index:1;
   bottom:0;
+  padding:6px 0;
   width:100%;
+  height:60px;
   display:flex;
   background-color:#fff;
-  border-top:1px solid #eee;
+  box-shadow:0 -1px 10px #ddd;
   a{
     flex:1;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
     text-align:center;
     color:#000;
+    font-weight:bold;
+    img{
+      margin-bottom:6px;
+      filter: grayscale(100%);
+    }
     &.router-link-exact-active{
-      color:#006bf7;
+      color:#1296db;
+      img{
+        filter: grayscale(0);
+      }
     }
   }
 }
