@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "mint-ui": "^2.2.13",
     "vue": "^2.5.13",
+    "vue-awesome": "^2.3.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
