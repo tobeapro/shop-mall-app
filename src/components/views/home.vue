@@ -3,10 +3,11 @@
     Search
     Banner(:imgList="imgList") 
     .type
-      ul
+      ul.type-list.clearfix
         li(v-for="(item,index) in typeList" :key="index")
-          icon(:name="item.icon")
-          span {{item.name}}
+          a(:href="item.link")
+            i(class="type-img" :style="{background:'url('+item.url+')',backgroundSize:'cover'}")
+            span(class="type-name") {{item.name}}
 </template>
 <script>
 import img1 from '../../assets/img/banner_1.jpg'
@@ -16,6 +17,16 @@ import img4 from '../../assets/img/banner_4.jpg'
 import img5 from '../../assets/img/banner_5.jpg'
 import Search from '../common/search.vue'
 import Banner from '../common/banner.vue'
+import market from '../../assets/img/market.svg'
+import shop from '../../assets/img/shop.svg'
+import clothes from '../../assets/img/clothes.svg'
+import xian from '../../assets/img/xian.svg'
+import tohome from '../../assets/img/tohome.svg'
+import recharge from '../../assets/img/recharge.svg'
+import beans from '../../assets/img/beans.svg'
+import ticket from '../../assets/img/ticket.svg'
+import money from '../../assets/img/money.svg'
+import all from '../../assets/img/all.svg'
 export default {
   name:'home',
   data(){
@@ -28,7 +39,16 @@ export default {
         {name:'banner_5',url:img5}
       ],
       typeList:[
-        {name:'超市',icon:'shopping-bag'}
+        {name:'京东超市',url:market,link:'#market'},
+        {name:'全球购',url:shop,link:'#shop'},
+        {name:'服装城',url:clothes,link:'#clothes'},
+        {name:'生鲜',url:xian,link:'#xian'},
+        {name:'到家',url:tohome,link:'#tohome'},
+        {name:'充值中心',url:recharge,link:'#recharge'},
+        {name:'领京豆',url:beans,link:'#beans'},
+        {name:'领券',url:ticket,link:'#ticket'},
+        {name:'惠赚钱',url:money,link:'#money'},
+        {name:'全部',url:all,link:'#all'}
       ]
     }
   },
@@ -47,6 +67,29 @@ export default {
     overflow-y:auto;
     .type{
       background-color:#f3f3f3;
+      .type-list{
+        li{       
+          float:left;
+          padding:6px 0;
+          width:20%;
+          text-align:center;
+          font-size:0;
+          a{
+            display:flex;
+            flex-direction: column;
+            align-items:center;
+            .type-img{
+              display:inline-block;
+              width:40px;
+              height:40px;
+            }
+            .type-name{
+              font-size:12px;
+              color:#555;
+            }
+          }
+        }
+      }
     }
   }
 </style>
