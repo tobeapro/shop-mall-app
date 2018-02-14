@@ -8,6 +8,16 @@
           a(:href="item.link")
             i(class="type-img" :style="{background:'url('+item.url+')',backgroundSize:'cover'}")
             span(class="type-name") {{item.name}}
+    .goods
+      .goods-item(v-for="(item,index) in goodsList" :key="index")
+        h4 {{item.goods.type}}
+          span(style="float:right") P{{index+1}}
+        ul.clearfix
+          li(v-for="(val,inx) in item.goods.list" :key="inx")
+            img(:src="val.img")
+            span(class="price") ¥:{{val.price}}
+            span(class="name")  {{val.name}}
+          
 </template>
 <script>
 import img1 from '../../assets/img/banner_1.jpg'
@@ -27,6 +37,12 @@ import beans from '../../assets/img/beans.svg'
 import ticket from '../../assets/img/ticket.svg'
 import money from '../../assets/img/money.svg'
 import all from '../../assets/img/all.svg'
+import food1 from '../../assets/img/food1.png'
+import food2 from '../../assets/img/food2.png'
+import clothes1 from '../../assets/img/clothes1.png'
+import clothes2 from '../../assets/img/clothes2.png'
+import digital1 from '../../assets/img/digital1.png'
+import digital2 from '../../assets/img/digital2.png'
 export default {
   name:'home',
   data(){
@@ -49,6 +65,32 @@ export default {
         {name:'领券',url:ticket,link:'#ticket'},
         {name:'惠赚钱',url:money,link:'#money'},
         {name:'全部',url:all,link:'#all'}
+      ],
+      goodsList:[
+        {goods:{
+          type:"休闲零食",
+          list:[
+            {name:'夏威夷果',price:'20',img:food1},
+            {name:'好吃的糖果',price:'40',img:food2}
+            ]
+          }
+        },
+        {goods:{
+          type:"精品服饰",
+          list:[
+            {name:'卡通T恤',price:'120',img:clothes1},
+            {name:'直男衬衫',price:'140',img:clothes2}
+            ]
+          }
+        },
+        {goods:{
+          type:"手机数码",
+          list:[
+            {name:'笔记本电脑',price:'5020',img:digital1},
+            {name:'酷炫耳机',price:'1140',img:digital2}
+            ]
+          }
+        }
       ]
     }
   },
@@ -87,6 +129,45 @@ export default {
               font-size:12px;
               color:#555;
             }
+          }
+        }
+      }
+    }
+    .goods{
+      background-color:#f6f6f6;
+      .goods-item{
+        h4{
+          padding:0 10px;
+          line-height:36px;
+          font-size:14px;
+          background-color:#fff;
+          &:before{
+            content:"";
+            display:inline-block;
+            margin-right:6px;
+            width:4px;
+            height:12px;
+            background-color:#e8380d;
+          }
+        }
+        li{
+          float:left;
+          padding:6px 0;
+          display:flex;
+          flex-direction:column;
+          width:50%;
+          img{
+            margin:10px 0;
+            width:100%;
+            height:100px;
+          }
+          .price{
+            text-align:center;
+            font-size:14px;
+            color:#e8380d;
+          }
+          .name{
+            text-align:center;
           }
         }
       }
