@@ -2,6 +2,7 @@
   .home
     Search
     Banner(:imgList="imgList") 
+    goodsDetail
     .type
       ul.type-list.clearfix
         li(v-for="(item,index) in typeList" :key="index")
@@ -13,10 +14,12 @@
         h4 {{item.goods.type}}
           span(style="float:right") P{{index+1}}
         ul.clearfix
-          li(v-for="(val,inx) in item.goods.list" :key="inx")
-            img(:src="val.img")
+          li(v-for="(val,inx) in item.goods.list" :key="inx",@click="goodsDetail(val)")
+            img(:src="val.img[0]")
             span(class="price") ¥:{{val.price}}
             span(class="name")  {{val.name}}
+            span(class="shop-car",@click.stop="add")
+              icon(name="shopping-cart",scale="1.2")
           
 </template>
 <script>
@@ -43,6 +46,9 @@ import clothes1 from '../../assets/img/clothes1.png'
 import clothes2 from '../../assets/img/clothes2.png'
 import digital1 from '../../assets/img/digital1.png'
 import digital2 from '../../assets/img/digital2.png'
+import sport1 from '../../assets/img/sport1.png'
+import sport2 from '../../assets/img/sport2.png'
+import goodsDetail from '../common/goodsDetail.vue'
 export default {
   name:'home',
   data(){
@@ -70,24 +76,32 @@ export default {
         {goods:{
           type:"休闲零食",
           list:[
-            {name:'夏威夷果',price:'20',img:food1},
-            {name:'好吃的糖果',price:'40',img:food2}
+            {name:'夏威夷果',price:'20',img:[food1],explain:'夏威夷果含有丰富的钙，磷 ，铁，维生素B1、B2和人体必需的8种氨基酸。'},
+            {name:'好吃的糖果',price:'40',img:[food2]}
             ]
           }
         },
         {goods:{
           type:"精品服饰",
           list:[
-            {name:'卡通T恤',price:'120',img:clothes1},
-            {name:'直男衬衫',price:'140',img:clothes2}
+            {name:'卡通T恤',price:'120',img:[clothes1]},
+            {name:'直男衬衫',price:'140',img:[clothes2]}
             ]
           }
         },
         {goods:{
           type:"手机数码",
           list:[
-            {name:'笔记本电脑',price:'5020',img:digital1},
-            {name:'酷炫耳机',price:'1140',img:digital2}
+            {name:'笔记本电脑',price:'5020',img:[digital1]},
+            {name:'酷炫耳机',price:'1140',img:[digital2]}
+            ]
+          }
+        },
+        {goods:{
+          type:"运动户外",
+          list:[
+            {name:'时尚运动鞋',price:'520',img:[sport1]},
+            {name:'斯伯丁篮球',price:'240',img:[sport2]}
             ]
           }
         }
@@ -96,7 +110,17 @@ export default {
   },
   components:{
     Banner,
-    Search
+    Search,
+    goodsDetail
+  },
+  methods:{
+    goodsDetail(val){
+      this.$store.dispatch("set_goodsDetail",val)
+      this.$store.commit("changeGoodsStatus")
+    },
+    add(){
+      alert(1)
+    }
   }
 }
 </script>
@@ -150,24 +174,39 @@ export default {
             background-color:#e8380d;
           }
         }
-        li{
-          float:left;
-          padding:6px 0;
-          display:flex;
-          flex-direction:column;
-          width:50%;
-          img{
-            margin:10px 0;
-            width:100%;
-            height:100px;
-          }
-          .price{
-            text-align:center;
-            font-size:14px;
-            color:#e8380d;
-          }
-          .name{
-            text-align:center;
+        ul{
+          border-top:1px solid #ddd;
+          border-bottom:1px solid #ddd;
+          li{
+            position: relative;
+            float:left;
+            padding:6px 0;
+            display:flex;
+            flex-direction:column;
+            width:50%;
+            &:not(:last-child){
+              border-right:1px solid #ddd;
+            }
+            img{
+              margin:10px 0;
+              width:100%;
+              height:100px;
+            }
+            .price{
+              padding-left:10px;
+              font-size:14px;
+              color:#e8380d;
+            }
+            .name{
+              padding-left:10px;
+            }
+            .shop-car{
+              position: absolute;
+              right:10px;
+              bottom:4px;
+              color:#1296db;
+              cursor:pointer;
+            }
           }
         }
       }
