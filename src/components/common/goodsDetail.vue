@@ -17,7 +17,7 @@
                     span 商品详情
                     span 评价
             .handle 
-                .cart 加入购物车
+                .cart(@click="addCart(goodsDetail)") 加入购物车
                 .order 立即购买
 </template>
 <script>
@@ -39,6 +39,9 @@ export default {
   methods:{
       changeStatus(){
           this.$store.commit("changeGoodsStatus")
+      },
+      addCart(val){
+          this.$emit("cartHandle",val)
       }
   }
 }
@@ -61,7 +64,7 @@ export default {
         .show{
             position:fixed;
             top:0;
-            bottom:60px;
+            bottom:50px;
             width:100%;
             overflow-y:auto;
             .title{
@@ -108,7 +111,11 @@ export default {
                 background-color:#f6f6f6;
                 span{
                     flex:1;
-                    line-height:30px;
+                    margin:10px 0;
+                    line-height:20px;
+                    &:not(:last-child){
+                        border-right:1px solid #aaa;
+                    }
                 }
             }
         }
@@ -116,8 +123,8 @@ export default {
             position:fixed;
             bottom:0;
             width:100%;
-            height:60px;
-            line-height:60px;
+            height:50px;
+            line-height:50px;
             font-size:14px;
             text-align:center;
             color:#fff;
@@ -125,7 +132,7 @@ export default {
             .cart{
                 float:left;
                 width:50%;
-                background-color:#2f2f2f;
+                background-color:#1296db;
             }
             .order{
                 float:right;
