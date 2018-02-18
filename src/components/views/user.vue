@@ -100,6 +100,7 @@ export default {
         font-size:14px;
         line-height:40px;
         background-color:#fff;
+        border-bottom:1px solid #ddd;
         .toShop{
           margin-right:20px;
           float:right;

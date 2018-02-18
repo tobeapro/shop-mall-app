@@ -1,24 +1,25 @@
 <template lang="pug">
   .shopCar
-    p(class="shopCar-title",v-if="canChosenList.length>0") 购物车
-    p(class="shopCar-remind",v-if="canChosenList.length===0") 
-      img(:src="emptyImg")
-    ul(class="goods-list")
-      li(v-for="(item,index) in canChosenList",:key="index",v-if="item.num>0")
-        span(@click.stop="changeChooseStatus(item,index)",class="choose-icon")
-          icon(:name="item.chooseStatus?'check-circle-o':'circle-o'",scale="1.4")
-        img(:src="item.img[0]")
-        .name {{item.name}}
-        .price 
-          .single 单价:¥{{item.price}}
-          .all 合计:¥{{item.price*item.num}}
-        .add
-          span(@click.stop="reduceCartNum(item,index)",:class="item.num<=1?'none':''")
-              icon(name="minus",scale=".8")
-          span(class="num") {{item.num}}
-          span(@click.stop="addCartNum(item,index)")
-              icon(name="plus",scale=".8")
-        .remove(@click.stop="removeCartNum(item.id,index)") 删除
+    .shopCar-main
+      p(class="shopCar-title",v-if="canChosenList.length>0") 购物车
+      p(class="shopCar-remind",v-if="canChosenList.length===0") 
+        img(:src="emptyImg")
+      ul(class="goods-list")
+        li(v-for="(item,index) in canChosenList",:key="index",v-if="item.num>0")
+          span(@click.stop="changeChooseStatus(item,index)",class="choose-icon")
+            icon(:name="item.chooseStatus?'check-circle-o':'circle-o'",scale="1.4")
+          img(:src="item.img[0]")
+          .name {{item.name}}
+          .price 
+            .single 单价:¥{{item.price}}
+            .all 合计:¥{{item.price*item.num}}
+          .add
+            span(@click.stop="reduceCartNum(item,index)",:class="item.num<=1?'none':''")
+                icon(name="minus",scale=".8")
+            span(class="num") {{item.num}}
+            span(@click.stop="addCartNum(item,index)")
+                icon(name="plus",scale=".8")
+          .remove(@click.stop="removeCartNum(item.id,index)") 删除
     .total
       span(@click.stop="changeChooseAll",class="choose-icon")
         icon(:name="chooseAllStatus&&canChosenList.length>0?'check-circle-o':'circle-o'",scale="1.4")
@@ -129,100 +130,106 @@ export default {
   .shopCar{
     position:fixed;
     top:0;
-    bottom:100px;
+    bottom:60px;
     width:100%;
-    overflow-y:auto;
-    .shopCar-title{
-      padding-left:10px;
-      font-size:14px;
-      line-height:40px;
-      color:#fff;
-      background-color:#1296db;
-    }
-    .shopCar-remind{
-      img{
-        display:block;
-        width:100%;
+    .shopCar-main{
+      position: absolute;;
+      top:0;
+      bottom:40px;
+      width:100%;
+      overflow-y:auto;
+      .shopCar-title{
+        padding-left:10px;
+        font-size:14px;
+        line-height:40px;
+        color:#fff;
+        background-color:#1296db;
       }
-    }
-    .goods-list{
-      li{
-        position:relative;
-        display:flex;
-        align-items:center;
-        width:100%;
-        border-bottom:1px solid #ddd;
-        .choose-icon{
-          padding:0 6px;
-          color:#1296db;
-        }
+      .shopCar-remind{
         img{
-          margin:4px 10px;
-          width:40px;
-          height:41px;
-          border-radius:50%;
+          display:block;
+          width:100%;
         }
-        .name{
-          width:80px;
-          white-space: nowrap;
-          overflow:hidden;
-          text-overflow: ellipsis;     
-        }
-        .price{
-          margin-left:10px;
-          color:#e8380d;
-          .single{
-            margin-top:8px;
-            line-height:20px;
+      }
+      .goods-list{
+        li{
+          position:relative;
+          display:flex;
+          align-items:center;
+          width:100%;
+          border-bottom:1px solid #ddd;
+          .choose-icon{
+            padding:0 6px;
+            color:#1296db;
           }
-          .all{
-            line-height:20px;
+          img{
+            margin:4px 10px;
+            width:40px;
+            height:41px;
+            border-radius:50%;
           }
-        }
-        .add{
-          position: absolute;
-          top: 50%;
-          right: 60px;
-          transform: translateY(-50%);
-          span{
-            float:left;                        
-            .fa-icon{
-                padding:2px;
-                color:#fff;
-                background-color:#1296db;
-                border-radius: 50%;
+          .name{
+            width:80px;
+            white-space: nowrap;
+            overflow:hidden;
+            text-overflow: ellipsis;     
+          }
+          .price{
+            margin-left:10px;
+            color:#e8380d;
+            .single{
+              margin-top:8px;
+              line-height:20px;
             }
-            &.none{
-                .fa-icon{
-                    background-color:#eee;
-                }
-            }
-            &.num{
-                margin:0 6px; 
-                line-height:20px;                      
-                font-size:14px;
+            .all{
+              line-height:20px;
             }
           }
-        }
-        .remove{
-          position: absolute;
-          top:0;
-          bottom:-1px;
-          right:0;
-          width:50px;
-          line-height:50px;
-          text-align:center;
-          color:#fff;
-          background-color:#e8380d;
+          .add{
+            position: absolute;
+            top: 50%;
+            right: 60px;
+            transform: translateY(-50%);
+            span{
+              float:left;                        
+              .fa-icon{
+                  padding:2px;
+                  color:#fff;
+                  background-color:#1296db;
+                  border-radius: 50%;
+              }
+              &.none{
+                  .fa-icon{
+                      background-color:#eee;
+                  }
+              }
+              &.num{
+                  margin:0 6px; 
+                  line-height:20px;                      
+                  font-size:14px;
+              }
+            }
+          }
+          .remove{
+            position: absolute;
+            top:0;
+            bottom:-1px;
+            right:0;
+            width:50px;
+            line-height:50px;
+            text-align:center;
+            color:#fff;
+            background-color:#e8380d;
+          }
         }
       }
     }
     .total{
-      position:fixed;
-      z-index:10;
+      position:absolute;;
+      z-index:2;
       display:flex;
       align-items:center;
-      bottom:60px;
+      bottom:0;
       width:100%;
       height:40px;
       background-color:#fff;
