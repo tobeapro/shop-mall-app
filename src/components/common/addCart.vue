@@ -17,7 +17,7 @@
                 .handle 
                     .total 合计:
                         span(class="price") ¥{{cartDetail.price*cartNum}}
-                    .order 立即购买
+                    .order(@click="toShopCar(cartDetail)") 立即购买
                         
 </template>
 <script>
@@ -36,14 +36,11 @@ export default {
   computed:{
       cartStatus(){
           return this.$store.state.shop.cartStatus
-      },
-      detail(){
-          return this.cartDetail
       }
   },
   beforeUpdate(){
-      this.$store.commit("setCartNum",this.detail)
-      this.cartNum=this.$store.getters.getCartNum(this.detail.id).num
+      this.$store.commit("setCartNum",this.cartDetail)
+      this.cartNum=this.$store.getters.getCartNum(this.cartDetail.id).num
   },
   methods:{
       changeCartStatus(){
@@ -59,6 +56,11 @@ export default {
       addCartNum(id){
           this.$store.commit("addCartNum",id)
           this.cartNum=this.$store.getters.getCartNum(id).num
+      },
+      toShopCar(cartDetail){
+          this.changeCartStatus()
+          this.$store.commit("toShopCar",cartDetail)
+          this.$router.push('/shopCar')
       }
   }
 }

@@ -3,7 +3,8 @@
         goodsDetail:{},
         goodsStatus:false,
         shopCar:[],
-        cartStatus:false
+        cartStatus:false,
+        orderList:[]
     },
     mutations:{
         setGoodsDetail(state,val){
@@ -25,6 +26,25 @@
                 }
             }
             val.num=0
+            val.chooseStatus=false
+            shopCar.push(val)
+        },
+        toShopCar(state,val){
+            let shopCar=state.shopCar;
+            for(let i=0;i<shopCar.length;i++){
+                if(shopCar[i].id===val.id){
+                    if(shopCar[i].num>0){
+                        return
+                    }else{
+                        shopCar[i].num=1
+                        return
+                    }
+                }else{
+                    continue
+                }
+            }
+            val.num=1
+            val.chooseStatus=false
             shopCar.push(val)
         },
         reduceCartNum(state,id){
@@ -59,6 +79,27 @@
                     continue
                 }
             }
+        },
+        changeChooseStatus(state,item){
+            let shopCar=state.shopCar;
+            for(let i=0;i<shopCar.length;i++){
+                if(shopCar[i].id===item.id){
+                    shopCar[i].chooseStatus=item.chooseStatus
+                    return
+                }else{
+                    continue
+                }
+            }
+        },
+        addNewOrder(state,item){
+            state.orderList.push(item)
+            let shopCar=state.shopCar   
+            for(let i=0;i<shopCar.length;i++){
+                if(shopCar[i].chooseStatus){
+                    shopCar.splice(i,1)          
+                    i--       
+                }
+            }       
         }
     },
     actions:{
@@ -67,9 +108,6 @@
         },
         change_goodsStatus({commit}){
             commit('changeGoodsStatus')  
-        },
-        remove_cartNum({commit},id){
-            commit('removeCartNum',id)
         }
     },
     getters:{

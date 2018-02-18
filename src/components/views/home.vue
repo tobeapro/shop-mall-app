@@ -23,7 +23,6 @@
               icon(name="shopping-cart",scale="1.2")         
 </template>
 <script>
-import { MessageBox } from 'mint-ui'
 import img1 from '../../assets/img/banner_1.jpg'
 import img2 from '../../assets/img/banner_2.jpg'
 import img3 from '../../assets/img/banner_3.jpg'
@@ -57,7 +56,7 @@ export default {
     })
     .catch((err)=>{
       console.log(err)
-      MessageBox.alert("请求失败！", "提示")
+      alert("加载失败！")
     })
   },
   components:{

@@ -16,9 +16,10 @@
                 .others
                     span 商品详情
                     span 评价
+                .info 无
             .handle 
                 .cart(@click="addCart(goodsDetail)") 加入购物车
-                .order 立即购买
+                .order(@click="toShopCar(goodsDetail)") 立即购买
 </template>
 <script>
 export default {
@@ -42,6 +43,11 @@ export default {
       },
       addCart(val){
           this.$emit("cartHandle",val)
+      },
+      toShopCar(goodsDetail){
+          this.changeStatus()
+          this.$store.commit("toShopCar",goodsDetail)
+          this.$router.push('/shopCar')
       }
   }
 }
