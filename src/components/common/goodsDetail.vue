@@ -16,17 +16,19 @@
                 .others
                     span 商品详情
                     span 评价
-                .info 无
+                .info 
+                    img(:src="noInfo")
             .handle 
                 .cart(@click="addCart(goodsDetail)") 加入购物车
                 .order(@click="toShopCar(goodsDetail)") 立即购买
 </template>
 <script>
+import noInfo from '../../assets/img/noInfo.png'
 export default {
   name:'goodsDetail',
   data(){
       return{
-
+        noInfo
       }
   },
   computed:{
@@ -122,6 +124,13 @@ export default {
                     &:not(:last-child){
                         border-right:1px solid #aaa;
                     }
+                }
+            }
+            .info{
+                padding-top:20px;
+                img{
+                    display:block;
+                    width:100%;
                 }
             }
         }

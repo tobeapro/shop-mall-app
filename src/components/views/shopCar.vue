@@ -225,6 +225,7 @@ export default {
       bottom:60px;
       width:100%;
       height:40px;
+      background-color:#fff;
       border-top:1px solid #ddd;
       .choose-icon{
         padding:0 6px;
