@@ -17,7 +17,7 @@ yarn add global @vue/cli
 
 ![项目预览](https://tobeapro.github.io/img/shop-mall-app1.gif)
 
-![项目预览](https://tobeapro.github.io/img/shop-mall-app1.gif)
+![项目预览](https://tobeapro.github.io/img/shop-mall-app2.gif)
 
 > #### 项目总结
 
